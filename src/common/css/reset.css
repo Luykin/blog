@@ -95,17 +95,24 @@ var {
   visibility: hidden;
   content: ".";
 }
+
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.flex{
+
+.flex {
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
 }
+
+.cursor {
+  cursor: pointer;
+}
+
 a:link,
 a:visited {
   color: #000;

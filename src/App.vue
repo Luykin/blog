@@ -1,28 +1,31 @@
 <template>
   <div id="app" ref='app'>
+    <i-header></i-header>
     <keep-alive>
       <router-view ref='body'></router-view>
     </keep-alive>
   </div>
 </template>
 <script>
-export default {
-  data() {
-    return {
+  import iHeader from 'components/header/header'
+  export default {
+    data() {
+      return {
+      }
+    },
+    created() {},
+    mounted() {
+    },
+    updated() {
+    },
+    methods: {
+    },
+    components: {
+      iHeader
+    },
+    watch: {
     }
-  },
-  created() {},
-  mounted() {
-  },
-  updated() {
-  },
-  methods: {
-  },
-  components: {
-  },
-  watch: {
   }
-}
 
 </script>
 <style>
