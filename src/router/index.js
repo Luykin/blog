@@ -14,6 +14,10 @@ const routerconst = new Router({
     path: '/index',
     component: () =>
       import ('components/index/index')
+  }, {
+    path: '/home',
+    component: () =>
+      import ('components/index/home')
   }]
 })
 

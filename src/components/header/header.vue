@@ -1,20 +1,21 @@
 <template>
-  <div v-if="indexData" class="card flex" :class="{'deformation': !status, 'restore': restore}" @mousemove="_mousemove($event)" @mouseleave="_mouseleave($event)" ref="card">
+  <div v-if="indexData" class="card flex" :class="{'deformation': !status, 'restore': restore, 'opacity': opacity}" @mousemove="_mousemove($event)" @mouseleave="_mouseleave($event)" ref="card">
     <div class="card-nei flex" :style="'background:url('+indexData.userBackground+') no-repeat; background-size: cover;'">
+      <!-- :style="'background:url('+indexData.userBackground+') no-repeat; background-size: cover;'" -->
       <div class="card-top flex" :class="{'card-top-none': !status, 'card-top-restore': restore}">
-        {{indexData.realName}}的个人网站
+        <!-- {{indexData.realName}}的个人网站 -->
       </div>
       <div class="card-middle flex" :class="{'card-middle-none': !status, 'card-middle-restore': restore}">
         <div :style="'background:url(' + indexData.userIcon +') no-repeat; background-size: 100% auto;'" class="header-img" :class="{'header-img-none': !status, 'header-img-restore': restore}"></div>
         <div class="card-btn-list flex">
           <div class="deformation-btn flex cursor" @click="_deformation" v-show="status">进入主页</div>
-          <div class="deformation-btn flex cursor"  v-show="status">关于我</div>
+          <div class="deformation-btn flex cursor" v-show="status">关于我</div>
           <div class="deformation-btn flex cursor" @click="_restore" v-show="!status">导航页</div>
         </div>
       </div>
       <div class="card-bottom flex" :class="{'card-middle-none': !status, 'card-middle-restore': restore}">
-        <div class="card-bottom-item flex">QQ:{{indexData.userTencent}}</div>
-        <div class="card-bottom-item flex">wx:{{indexData.userWeChat}}</div>
+        <div class="card-bottom-item flex" v-show="status">QQ:{{indexData.userTencent}}</div>
+        <div class="card-bottom-item flex" v-show="status">wx:{{indexData.userWeChat}}</div>
         <div class="card-bottom-item flex cursor">github:{{indexData.userGihub}}</div>
       </div>
       <!-- <div class="car-item flex">{{indexData.realName}}</div> -->
@@ -28,15 +29,29 @@ export default {
     return {
       indexData: null,
       status: true,
-      restore: null
+      restore: null,
+      opacity: null
     }
   },
   created() {
+    this._setStatus()
     this._index()
   },
   computed: {},
   mounted() {},
   methods: {
+    _setStatus() {
+      if (window.location.hash == '#/index' || window.location.hash == '#/') {
+        this.status = true
+      } else {
+        this.status = false
+        this.opacity = true
+        let time = setTimeout(() => {
+          this.opacity = null
+          clearTimeout(time)
+        }, 600)
+      }
+    },
     _index() {
       index().then((res) => {
         if (res.status === 200) {
@@ -47,7 +62,7 @@ export default {
     _mousemove(event) {
       window.requestAnimationFrame(() => {
         if (this.status) {
-          this.$refs.card.style = `transition: none; transform: perspective(900px) rotateX(${(event.offsetY - (this.$refs.card.offsetWidth / 2))/90}deg) rotateY(${(event.offsetX - (this.$refs.card.offsetHeight / 2))/90}deg) scale3d(1, 1, 1) translate(-50%, -50%);`
+          this.$refs.card.style = `transition: none; transform: perspective(900px) rotateX(${(event.pageY - this.$refs.card.offsetTop)/30}deg) rotateY(${(event.pageX - this.$refs.card.offsetLeft)/60}deg) scale3d(1, 1, 1) translate(-50%, -50%);`
         }
       })
     },
@@ -63,14 +78,22 @@ export default {
         this._mouseleave()
         this.status = false
         this.restore = null
+        this.$router.push({
+          path: '/home'
+        })
       }
     },
     _restore() {
       if (!this.status) {
         this.status = true
         this.restore = true
+        this.$router.push({
+          path: '/index'
+        })
+        this.$root.eventHub.$emit('video')
         let time = setTimeout(() => {
           this.restore = false
+          // this.$root.eventHub.$emit('video')
           clearTimeout(time)
         }, 600)
       }
@@ -82,7 +105,7 @@ export default {
 </script>
 <style scoped>
 .card {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   z-index: 9999;
@@ -175,7 +198,6 @@ export default {
     transition: none;
     border-radius: 15px;
     transform: translate3d(-50%, -50%, 0);
-    opacity: .8;
   }
   15% {
     max-width: 1000px;
@@ -210,7 +232,6 @@ export default {
     border-radius: 0;
     max-width: none;
     transform: translate3d(0, 0, 0);
-    opacity: .7;
   }
 }
 
@@ -222,7 +243,6 @@ export default {
     border-radius: 0;
     max-width: none;
     transform: translate3d(0, 0, 0);
-    opacity: .7;
   }
   10% {
     top: 0;
@@ -249,7 +269,6 @@ export default {
     max-width: 750px;
     border-radius: 15px;
     transform: translate3d(-50%, -50%, 0);
-    opacity: .8;
   }
 }
 
@@ -349,6 +368,9 @@ export default {
 
 
 
+
+
+
 /*@keyframes middlenone{
   
 }
@@ -357,7 +379,7 @@ export default {
 }
 @keyframes middlenone{
   
-}*/
+  }*/
 
 @keyframes headerimgnone {
   0% {
@@ -410,13 +432,21 @@ export default {
 .card-middle-none .deformation-btn {
   font-size: 14px;
 }
+
 .deformation .card-bottom {
   height: 100%;
 }
-.deformation .card-middle{
+
+.deformation .card-middle {
   height: 100%;
 }
-.deformation .card-nei{
+
+.deformation .card-nei {
   flex-direction: row-reverse;
 }
+
+.opacity {
+  opacity: 0 !important;
+}
+
 </style>

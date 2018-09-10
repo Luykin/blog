@@ -1,47 +1,56 @@
 <template>
   <div class="index-content">
-    <video src="../../assets/bg.mp4" autoplay loop muted="true" class="index-bg"></video>
+    <video src="../../assets/bg.mp4" autoplay loop muted="true" class="index-bg" ref="vieoplay"></video>
   </div>
 </template>
 <script type="text/javascript">
-  import { login, index } from 'api/index'
-  export default {
-    data() {
-      return {
-        indexData: null,
+import { login, index } from 'api/index'
+export default {
+  data() {
+    return {
+      indexData: null,
+    }
+  },
+  created() {
+    this.$root.eventHub.$on('video', () => {
+      this._videoPlay()
+    })
+    this._index()
+  },
+  computed: {},
+  mounted() {},
+  methods: {
+    _videoPlay() {
+      console.log(this.$refs.vieoplay.paused)
+      if (this.$refs.vieoplay.paused) {
+        this.$refs.vieoplay.play()
       }
     },
-    created() {
-      this._index()
+    _index() {
+      index().then((res) => {
+        if (res.status === 200) {
+          this.indexData = res.data
+        }
+      })
     },
-    computed: {},
-    mounted() {},
-    methods: {
-      _index() {
-        index().then((res) => {
-          if (res.status === 200) {
-            this.indexData = res.data
-          }
-        })
-      },
-      _login() {
-        login(this.username, this.userpassword).then((res) => {
-          console.log(res)
-        })
-      },
-      _mousemove(event) {
-        window.requestAnimationFrame(() => {
+    _login() {
+      login(this.username, this.userpassword).then((res) => {
+        console.log(res)
+      })
+    },
+    _mousemove(event) {
+      window.requestAnimationFrame(() => {
         this.$refs.card.style = `transition: none; transform: perspective(900px) rotateX(${(event.offsetY - (this.$refs.card.offsetWidth / 2))/90}deg) rotateY(${(event.offsetX - (this.$refs.card.offsetHeight / 2))/90}deg) scale3d(1, 1, 1) translate(-50%, -50%);`
       })
-      },
-      _mouseleave(event) {
-        window.requestAnimationFrame(() => {
-          this.$refs.card.style = `transition: 800ms cubic-bezier(0.03, 0.98, 0.52, 0.99); transform: perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translate(-50%, -50%);`
-        })
-      }
     },
-    components: {}
-  }
+    _mouseleave(event) {
+      window.requestAnimationFrame(() => {
+        this.$refs.card.style = `transition: 800ms cubic-bezier(0.03, 0.98, 0.52, 0.99); transform: perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translate(-50%, -50%);`
+      })
+    }
+  },
+  components: {}
+}
 
 </script>
 <style type="text/css" scoped>
@@ -56,4 +65,5 @@
   position: fixed;
   z-index: -1;
 }
+
 </style>
