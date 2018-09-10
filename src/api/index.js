@@ -36,6 +36,22 @@ export function index() {
   })
 }
 
+export function getArticle() {
+  const url = `${PREFIX_URL}/article`
+  let data = {
+  }
+  return axios.get(url, {params: data})
+  .then((res) => {
+    return Promise.resolve(res)
+  })
+  .catch((error) => {
+    return Promise.resolve({
+      err_code: error.response.status,
+      err_msg: error.response.status
+    })
+  })
+}
+
 // export function getUserInfo(userName, userPassword) {
 //   const url = `${PREFIX_URL}/user_info`
 //   let data = {
