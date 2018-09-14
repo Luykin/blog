@@ -6,7 +6,7 @@ html {
   --service-bg: #dfe1e5;
   font-size: 14px;
   user-select: none;
-  font-family: 微软雅黑 !important;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   overflow-x: hidden;
   /* background-repeat:repeat-x;*/
 }
@@ -16,8 +16,6 @@ body {
   margin: 0;
   padding: 0;
   user-select: none;
-  -webkit-text-size-adjust: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   line-height: 1;
   overflow: hidden;
 }

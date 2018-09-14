@@ -1,6 +1,6 @@
 <template>
   <div v-if="indexData" class="card flex" :class="{'deformation': !status, 'restore': restore, 'opacity': opacity}" @mousemove="_mousemove($event)" @mouseleave="_mouseleave($event)" ref="card">
-    <div class="card-nei flex" :style="'background:url('+indexData.userBackground+') no-repeat; background-size: cover;'">
+    <div class="card-nei flex">
       <!-- :style="'background:url('+indexData.userBackground+') no-repeat; background-size: cover;'" -->
       <div class="card-top flex" :class="{'card-top-none': !status, 'card-top-restore': restore}">
         {{indexData.realName}}的个人网站
@@ -62,7 +62,7 @@ export default {
     _mousemove(event) {
       window.requestAnimationFrame(() => {
         if (this.status) {
-          this.$refs.card.style = `transition: none; transform: perspective(900px) rotateX(${(event.pageY - this.$refs.card.offsetTop)/30}deg) rotateY(${(event.pageX - this.$refs.card.offsetLeft)/60}deg) scale3d(1, 1, 1) translate(-50%, -50%);`
+          this.$refs.card.style = `transition: none; transform: perspective(900px) rotateX(${(event.pageY - this.$refs.card.offsetTop)/40}deg) rotateY(${(event.pageX - this.$refs.card.offsetLeft)/80}deg) scale3d(1, 1, 1) translate(-50%, -50%);`
         }
       })
     },
@@ -118,7 +118,7 @@ export default {
   background-size: cover;
   border-radius: 15px;
   opacity: .8;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .6);
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, .1);
   overflow: hidden;
 }
 

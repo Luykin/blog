@@ -4,23 +4,19 @@ import { encryptedStorage } from 'common/js/util'
 const mutations = {
   [types.SET_TOKEN](state, token) {
     state.token = token
-    encryptedStorage('token', token)
-  },
-  [types.SET_APP](state, app) {
-    state.app = app
-    encryptedStorage('app', app)
+    encryptedStorage('lyk-t-n', token)
   },
   [types.SET_USER](state, user) {
     state.user = user
-    encryptedStorage('user', user)
+    encryptedStorage('lyk-u-r', user)
   },
   [types.SET_TOKENTIME](state, tokenTime) {
     state.tokenTime = tokenTime
-    encryptedStorage('tokenTime', tokenTime)
+    encryptedStorage('lyk-t-e', tokenTime)
   },
-  [types.SET_SCORERATE](state, scorerate) {
-    state.scorerate = scorerate
-    encryptedStorage('scorerate', scorerate)
+  [types.SET_BACKGROUND](state, background) {
+    state.background = background
+    encryptedStorage('lyk-b-d', background)
   }
 }
 

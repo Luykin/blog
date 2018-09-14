@@ -1,6 +1,5 @@
 <template>
   <div class="index-content">
-    <video src="../../assets/bg.mp4" autoplay loop muted="true" class="index-bg" ref="vieoplay"></video>
   </div>
 </template>
 <script type="text/javascript">
@@ -12,20 +11,13 @@ export default {
     }
   },
   created() {
-    this.$root.eventHub.$on('video', () => {
-      this._videoPlay()
-    })
     this._index()
   },
-  computed: {},
-  mounted() {},
+  computed: {
+  },
+  mounted() {
+  },
   methods: {
-    _videoPlay() {
-      console.log(this.$refs.vieoplay.paused)
-      if (this.$refs.vieoplay.paused) {
-        this.$refs.vieoplay.play()
-      }
-    },
     _index() {
       index().then((res) => {
         if (res.status === 200) {
@@ -49,7 +41,8 @@ export default {
       })
     }
   },
-  components: {}
+  components: {
+  }
 }
 
 </script>
