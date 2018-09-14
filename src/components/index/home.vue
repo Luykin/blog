@@ -1,6 +1,6 @@
 <template>
-  <div class="index-content flex" v-if="articleList">
-  	<div v-for="item in articleList" class="article-warp flex">
+  <div class="index-content flex">
+  	<div v-for="item in articleList" class="article-warp flex" v-if="articleList">
      <div v-html="item.content" class="article-content flex"></div> 
     </div>
   </div>

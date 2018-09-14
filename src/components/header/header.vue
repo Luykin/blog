@@ -3,7 +3,7 @@
     <div class="card-nei flex" :style="'background:url('+indexData.userBackground+') no-repeat; background-size: cover;'">
       <!-- :style="'background:url('+indexData.userBackground+') no-repeat; background-size: cover;'" -->
       <div class="card-top flex" :class="{'card-top-none': !status, 'card-top-restore': restore}">
-        <!-- {{indexData.realName}}的个人网站 -->
+        {{indexData.realName}}的个人网站
       </div>
       <div class="card-middle flex" :class="{'card-middle-none': !status, 'card-middle-restore': restore}">
         <div :style="'background:url(' + indexData.userIcon +') no-repeat; background-size: 100% auto;'" class="header-img" :class="{'header-img-none': !status, 'header-img-restore': restore}"></div>

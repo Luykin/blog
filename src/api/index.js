@@ -51,7 +51,23 @@ export function getArticle() {
     })
   })
 }
-
+export function getArticleForUserId(userIdList, no_cantent) {
+  const url = `${PREFIX_URL}/user_article`
+  let data = {
+    userIdList,
+    no_cantent
+  }
+  return axios.post(url, qs.stringify(data))
+  .then((res) => {
+    return Promise.resolve(res)
+  })
+  .catch((error) => {
+    return Promise.resolve({
+      err_code: error.response.status,
+      err_msg: error.response.status
+    })
+  })
+}
 // export function getUserInfo(userName, userPassword) {
 //   const url = `${PREFIX_URL}/user_info`
 //   let data = {
