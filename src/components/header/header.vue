@@ -118,6 +118,7 @@ export default {
   background-size: cover;
   border-radius: 15px;
   opacity: .8;
+  align-items: flex-end;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, .1);
   overflow: hidden;
 }
@@ -148,7 +149,7 @@ export default {
 .car-item {
   /*  width: 100%;*/
   height: 20%;
-  color: #fff;
+  color: #353535;
 }
 
 .deformation {
@@ -176,7 +177,7 @@ export default {
     margin-top: 46%;
   }
   100% {
-    margin-top: 45px;
+    margin-top: 90px;
   }
 }
 
@@ -199,39 +200,13 @@ export default {
     border-radius: 15px;
     transform: translate3d(-50%, -50%, 0);
   }
-  15% {
-    max-width: 1000px;
-  }
-  30% {
-    max-width: 1250px;
-  }
-  35% {
-    top: 20%;
-    left: 50%;
-    transform: translate3d(-50%, 0, 0);
-  }
-  45% {
-    max-width: 1600px;
-  }
-  65% {
-    left: 50%;
-    width: 90%;
-    max-width: 1750px;
-    transform: translate3d(-50%, 0, 0);
-  }
-  80% {
-    max-width: 1900px;
-  }
-  81% {
-    max-width: none;
-  }
   100% {
     top: 0;
     left: 0;
     width: 100%;
     border-radius: 0;
     max-width: none;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, -50%, 0);
   }
 }
 
@@ -273,7 +248,7 @@ export default {
 }
 
 .deformation-btn {
-  color: #fff;
+  color: #353535;
   font-size: 20px;
   width: 0;
   flex-grow: 1;
@@ -290,7 +265,7 @@ export default {
 .card-top {
   width: 100%;
   height: 20%;
-  color: #fff;
+  color: #353535;
   font-size: 24px;
   overflow: hidden;
 }
@@ -307,7 +282,7 @@ export default {
   width: 100%;
   height: 12%;
   font-size: 15px;
-  color: #fff;
+  color: #353535;
   flex-grow: 1;
   overflow: hidden;
 }
@@ -350,37 +325,24 @@ export default {
 @keyframes middlenone {
   0% {
     width: 100%;
+    height: 100%;
   }
   100% {
     width: 50%;
+    height: 50%;
   }
 }
 
 @keyframes middlerestore {
   0% {
     width: 50%;
+    height: 50%;
   }
   100% {
     width: 100%;
+    height: 100%;
   }
 }
-
-
-
-
-
-
-
-/*@keyframes middlenone{
-  
-}
-@keyframes middlenone{
-  
-}
-@keyframes middlenone{
-  
-  }*/
-
 @keyframes headerimgnone {
   0% {
     transform: scale(1, 1);

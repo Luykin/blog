@@ -152,6 +152,7 @@ export default {
 
 .active-l-cbsc-i .lyk-cbsc-item-title {
   color: #67c23a;
+  border-bottom: 2px solid #67c23a;
 }
 
 .now-bg-color{
